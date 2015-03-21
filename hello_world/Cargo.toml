@@ -1,0 +1,9 @@
+[package]
+
+name = "rust-simple-tests"
+version = "0.0.1"
+authors = ["Brandon DeRosier <bdero@mit.edu>"]
+
+[dependencies]
+simple = "*"
+rand = "*"
