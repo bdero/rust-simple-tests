@@ -1,16 +1,32 @@
 extern crate simple;
 use simple::{Window, Rect};
 
-fn main() {
-    let mut app = simple::Window::new("hello world", 1920, 1080);
+extern crate rand;
+use rand::Rng;
 
-    app.set_color(255, 0, 255, 255);
-    app.draw_rect(simple::Rect{
-        x: 100,
-        y: 100,
-        w: 300,
-        h: 200,
-    });
-    
-    while app.next_frame() {}
+
+static WIDTH:i32 = 800;
+static HEIGHT:i32 = 600;
+
+
+fn main() {
+    let mut app = simple::Window::new("hello world", WIDTH, HEIGHT);
+    let mut rng = rand::thread_rng();
+
+    let rect_max_size = 300;
+
+    while app.next_frame() {
+        app.set_color(
+            rng.gen_range(0, 255),
+            rng.gen_range(0, 255),
+            rng.gen_range(0, 255),
+            rng.gen_range(0, 255),
+        );
+        app.draw_rect(simple::Rect{
+            x: rng.gen_range(0, WIDTH),
+            y: rng.gen_range(0, HEIGHT),
+            w: rng.gen_range(-rect_max_size, rect_max_size),
+            h: rng.gen_range(-rect_max_size, rect_max_size),
+        });
+    }
 }
